@@ -23,6 +23,7 @@ abstract class User {
 class Student extends User {
     private String studentId;
     private List<String> courses;
+    private StudentHistory historyBorrowed[];
 
     public Student(int userId, String name, String email, String password, String role, String studentId, List<String> courses) {
         super(userId, name, email, password, role);
@@ -59,6 +60,11 @@ class Student extends User {
 
 class Lecturer extends User {
     // Implementation similar to Student class with specific methods like approveRequest
+    LecturerHistory historyOfLecturer[];
+
+    public void viewHistory() {
+
+    }
 }
 
 class Technician extends User {
@@ -75,6 +81,7 @@ class Component {
     private String name;
     private int quantityAvailable;
     private String majorAssociated;
+    private int borrowStatus; //1 PENDing, 2 return, 3 borrowing
 
     public Component(int componentId, String name, int quantityAvailable, String majorAssociated) {
         this.componentId = componentId;
@@ -238,9 +245,8 @@ class SystemManager {
 
 class BorrowedRecord {
     private int recordId; // Unique ID for the record
-    private HashMap<Student, Component> recordHistory;
-    // private Student student; // Reference to the Student who borrowed the item
-    // private Component component; // Reference to the Component that was borrowed
+     private Student student; // Reference to the Student who borrowed the item
+     private ArrayList<Component> component; // Reference to the Component that was borrowed
     private Date borrowDate; // When the item was borrowed
     private Date returnDate; // When the item is expected to be returned
 
@@ -293,4 +299,36 @@ class BorrowedRecord {
     public void setReturnDate(Date returnDate) {
         this.returnDate = returnDate;
     }
+
+    public void showAllComopnent() {}
+
+    public void showReturnedComopnent() {}
+
+    public void showBorrowingComponent() {}
+
 }
+
+public class History {
+    private int historyID;
+    private ArrayList<Component> component;
+
+    public int GetHistoryID() {
+        return this.historyID;
+    }
+
+    public ArrayList<Component> getAllComponent() {
+        return this.component;
+    }
+}
+
+public class StudentHistory extends History {
+    Lecturer lecturerApproved;
+}
+
+public class LecturerHistory extends History {
+    Student studentBorrowed;
+}
+
+
+
+
