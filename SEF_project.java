@@ -60,8 +60,9 @@ class Student extends User {
 
 class Lecturer extends User {
     // Implementation similar to Student class with specific methods like approveRequest
-    LecturerHistory historyOfLecturer[];
-
+    ArrayList<LecturerHistory> historyOfLecturer;
+    ArrayList<BorrowingRequest> studentRequestingBorrow;
+    ArrayList<ExtendingRequest> studentRequestingExtending;
     public void viewHistory() {
 
     }
@@ -70,6 +71,8 @@ class Lecturer extends User {
 class Technician extends User {
     // Implementation similar to Student class with specific methods like notifyCollectionDate
     ArrayList<BorrowedRecord> component;
+    ArrayList<BorrowingRequest> studentRequestingBorrow;
+    ArrayList<ExtendingRequest> studentRequestingExtending;
 }
 
 class Admin extends User {
@@ -329,6 +332,14 @@ public class LecturerHistory extends History {
     Student studentBorrowed;
 }
 
+public class BorrowingRequest extends Request {
+    Student requestingStudent;
+    ArrayList<Component> itemThatBorrowing;
+}
 
+public class ExtendRequest extends Request {
+    Student extendingStudent;
+    ArrayList<Component> itemThatExtending;
+}
 
 
